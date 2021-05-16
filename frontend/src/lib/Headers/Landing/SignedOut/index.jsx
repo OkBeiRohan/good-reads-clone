@@ -79,7 +79,7 @@ function SignedOutHeader() {
               </div>
               <div id="legal">
                 <div class="legalMessage">
-                  By creating an account, you agree to the Goodreads{" "}
+                  By creating an account, you agree to the Reader Giant's{" "}
                   <a
                     target="_blank"
                     class="gr-hyperlink"
@@ -88,14 +88,13 @@ function SignedOutHeader() {
                   >
                     Terms of Service
                   </a>{" "}
-                  and
+                  and{" "}
                   <a
                     target="_blank"
                     class="gr-hyperlink"
                     rel="noopener noreferrer"
                     href="/about/privacy"
                   >
-                    {" "}
                     Privacy Policy
                   </a>
                   .
