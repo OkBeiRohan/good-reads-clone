@@ -1,5 +1,9 @@
 const dotenv = require("dotenv");
 
+/********
+ * Importing env file. Throw error if any error.
+ */
+
 const envFile = dotenv.config({ path: "./src/config/.env" });
 
 if (!envFile || envFile.error) {
