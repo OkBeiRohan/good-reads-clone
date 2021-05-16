@@ -35,8 +35,20 @@
 
 ## How To Install
 
+<b>Clone the repo, open a terminal in repo folder</b>
+
 ### Frontend
 
-<b>CLONE THE REPO</b>
-
 `cd frontend`</br>`npm install`
+
+#### Running Frontend
+
+`cd frontend`</br>`npm start`
+
+### Backend
+
+`cd backend`</br>`yarn` or `npm install`
+
+#### Running Backend
+
+`cd backend`</br>`yarn dev`(For development server using <i>nodemon</i>, Server will restart automatically when there's a file change)</br><b>OR</b></br>`npm start` (For server which wont restart automatically on file changes)
