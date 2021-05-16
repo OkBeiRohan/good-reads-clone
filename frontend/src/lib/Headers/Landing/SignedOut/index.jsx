@@ -16,8 +16,8 @@ function SignedOutHeader() {
             <div id="logo">
               <a href="/">
                 <img
-                  alt="Goodreads: Book reviews, recommendations, and discussion"
-                  src="https://s.gr-assets.com/assets/home/header_logo-8d96d7078a3d63f9f31d92282fd67cf4.png"
+                  alt="Reader Giant: Book reviews, recommendations, and discussion"
+                  src="/assets/img/logo.png"
                 />
               </a>
             </div>
