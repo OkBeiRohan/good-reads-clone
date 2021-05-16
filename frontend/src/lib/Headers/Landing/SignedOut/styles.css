@@ -49,6 +49,7 @@
   background: #ffffff;
   border: 1px solid #d8d8d8;
   border-radius: 10px;
+  transition: 0.5s ease;
 }
 
 #createAccount h2 {
@@ -80,7 +81,7 @@
   border-color: #3b5998;
   color: white;
   border: 1px solid #382110;
-  transition: 0.5s ease;
+  transition: 0.3s ease;
 }
 .fbloginbutton:hover {
   background-color: #537fdd;
@@ -97,7 +98,7 @@
   color: #333333;
   background-color: #f5d47a;
   border: 1px solid #b38b22;
-  transition: 0.5s ease;
+  transition: 0.3s ease;
 }
 .amazonLoginButton:hover {
   background-color: #ffe6a0;
@@ -116,7 +117,8 @@
   color: #333333;
   background-color: #fff;
   border: 1px solid #000;
-  transition: 0.5s ease;
+  transition: 0.3s ease;
+  width: 100%;
 }
 .appleLoginButton:hover {
   background-color: #fff;
@@ -135,7 +137,7 @@
   background-color: #382110;
   border: 1px solid #382110;
   margin-bottom: 16px;
-  transition: 0.5s ease;
+  transition: 0.3s ease;
 }
 .emailSignUpButton:hover {
   background-color: #61432f;
@@ -147,13 +149,12 @@
   font-size: 12px;
   text-align: center;
   color: #999999;
-  padding-right: 24px;
   text-decoration: none;
 }
 .gr-hyperlink {
   color: #00635d;
   text-decoration: none;
-  transition: 0.5s ease;
+  transition: 0.3s ease;
 }
 .gr-hyperlink:hover {
   color: #003330;
@@ -172,4 +173,35 @@
 
 .u-marginTopLarge {
   margin-top: 24px;
+}
+
+.signup-disabled {
+  border-color: red;
+  background-color: rgba(255, 0, 0, 0.226);
+  color: #000;
+}
+.signup-disabled:hover {
+  border-color: red;
+  background-color: rgba(255, 0, 0, 0.527);
+  color: #000;
+}
+
+.accountActions {
+  animation: opac 0.8s;
+}
+@keyframes opac {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.login-input {
+  margin-bottom: 18px;
+  width: 92%;
+  border: 1px solid #000;
+  border-radius: 2px;
+  padding: 8px;
 }
