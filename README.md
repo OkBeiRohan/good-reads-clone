@@ -1,1 +1,3 @@
-# good-reads-clone
+# Reader Giant
+
+## A goodreads.com clone
