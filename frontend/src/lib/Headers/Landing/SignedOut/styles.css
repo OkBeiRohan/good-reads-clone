@@ -1,0 +1,142 @@
+.headerSignedOut {
+  height: 370px;
+  padding: 0;
+  position: static;
+  border: 0;
+  background-color: #fff7e9;
+  background-position: center 75px;
+  background-repeat: no-repeat;
+  background-size: auto 295px;
+  min-width: 970px;
+}
+
+.headerNavSO {
+  height: 65px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: static;
+  border: 0;
+  background-position: center;
+  background-repeat: repeat-x;
+  background-color: #f4f2e9;
+}
+
+.headerContainerSO {
+  margin: 0 auto;
+  text-align: left;
+  width: 970px;
+  position: relative;
+}
+.navBarSO {
+  height: 65px;
+  padding-top: 10px;
+}
+
+.headerSOContent {
+  position: absolute;
+  height: 370px;
+  z-index: 1;
+  right: 0;
+  top: 0;
+}
+
+#createAccount {
+  width: 250px;
+  margin: 14px 6px 0 0;
+  float: right;
+  position: sticky;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+}
+
+#createAccount h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  padding-top: 4px;
+  padding-bottom: 14px;
+  text-align: center;
+}
+
+.signupbutton {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 2;
+  border-radius: 3px;
+  font-size: 14px;
+  appearance: none;
+  padding: 8px 12px;
+  text-align: left;
+  cursor: pointer;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.fbloginbutton {
+  background-color: #3b5998;
+  border-color: #3b5998;
+  color: white;
+  border: 1px solid #382110;
+}
+
+.gr-button--facebook__icon {
+  width: 21px;
+  height: 21px;
+  margin-right: 8px;
+}
+
+.amazonLoginButton {
+  color: #333333;
+  background-color: #f5d47a;
+  border: 1px solid #b38b22;
+}
+
+.gr-button--amazon__icon {
+  width: 21px;
+  height: 21px;
+  margin-right: 8px;
+  background-size: 100% 100%;
+  margin-left: -0.5em;
+}
+
+.appleLoginButton {
+  color: #333333;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+.gr-button--apple__icon {
+  width: 31px;
+  height: 31px;
+  background-size: 100% 100%;
+  margin-left: -1.5em;
+}
+
+.emailSignUpButton {
+  color: white;
+  background-color: #382110;
+  border: 1px solid #382110;
+  margin-bottom: 16px;
+}
+
+#legal {
+  font-size: 12px;
+  text-align: center;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  color: #999999;
+  padding-right: 24px;
+  text-decoration: none;
+}
+.gr-hyperlink {
+  color: #00635d;
+  text-decoration: none;
+}
+#signIn {
+  font-size: 16px;
+  text-align: center;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  padding-top: 24px;
+}
