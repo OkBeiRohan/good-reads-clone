@@ -1,28 +1,19 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cookie-parser": "^1.4.5",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.9",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.2",
-    "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0",
-    "validator": "^13.6.0"
-  }
+    "name": "thx-backend",
+    "version": "0.0.1",
+    "description": "Team Hyperion X",
+    "main": "app.js",
+    "scripts": {
+        "start": "node src/server.js",
+        "dev": "nodemon src/server.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.2"
+    },
+    "engines": {
+        "node": ">=12.0.0"
+    }
 }
