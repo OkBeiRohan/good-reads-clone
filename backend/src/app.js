@@ -1,6 +1,7 @@
 const express = require('express')
 const cockieParser = require('cookie-parser')
 var cors = require('cors')
+var morgan = require('morgan')
 const app = express();
 const path = require('path');
 const userRouter = require('./routes/user.route')
@@ -17,6 +18,7 @@ const mongoose = require('mongoose');
 app.use(cockieParser());
 app.use(express.json());
 app.use(cors());
+app.use(morgan("dev"));
 app.use('/images', express.static(path.join(__dirname, 'uploads')))
 
 
