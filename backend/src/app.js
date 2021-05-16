@@ -18,9 +18,15 @@ const morgan = require("morgan");
 const connectDB = require("./config/db");
 const routes = require("./routes");
 
-const app = express();
+/*******
+ * Defining the express app
+ */
+const app = express(); 
 const server = require("http").Server(app);
 
+/*******
+ * Connecting to Database
+ */
 connectDB();
 app.use(cors());
 app.use(express.json());

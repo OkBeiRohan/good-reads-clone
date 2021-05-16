@@ -1,6 +1,6 @@
 # Reader Giant
 
-## A goodreads.com clone
+A <a href="https://www.goodreads.com/">Good Reads</a> clone made using React and Node
 
 ## Stack Used: MERN
 
@@ -51,4 +51,4 @@
 
 #### Running Backend
 
-`cd backend`</br>`yarn dev`(For development server using <i>nodemon</i>, Server will restart automatically when there's a file change)</br><b>OR</b></br>`npm start` (For server which wont restart automatically on file changes)
+`cd backend`</br>`yarn dev` (For development server using <i>nodemon</i>, Server will restart automatically when there's a file change)</br><b>OR</b></br>`npm start` (For server which wont restart automatically on file changes)

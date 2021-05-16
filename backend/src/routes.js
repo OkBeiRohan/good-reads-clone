@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 /********
- * Routes and Methods, and corresponding functions for them are defined below
+ * Defining API Endpoints (Request URL, Method and corresponding function to response)
  */
 
 router.get("/test", async (req, res) => {

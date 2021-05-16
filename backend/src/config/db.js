@@ -1,13 +1,25 @@
 const config = require("./index");
+const { MongoMemoryServer } = require("mongodb-memory-server");
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
-  /***************
-   * Try connecting to MongoDB and throw error if couldn't.
+  
+  /****************
+   * MongoDB Memory Server is a locally running MongoDB for testing and development purposes
    */
-
+  const mongo = new MongoMemoryServer();
   try {
-    const conn = await mongoose.connect(`${config.databaseUrl}`, {
+
+    /**************
+     * If the mode is development, it will use MongoMemoryServer and else(production), it will use real database
+     */
+    let dbUrl =
+      config.mode === "development" ? await mongo.getUri() : config.databaseUrl;
+      
+    /**************
+     * Try connecting to MongoDB and throw error if couldn't.
+     */
+    const conn = await mongoose.connect(`${dbUrl}`, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,
