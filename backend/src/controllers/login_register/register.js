@@ -6,6 +6,9 @@ const register = async (req, res) => {
   if (typeof stringpass == "number") stringpass = req.body.password.toString();
   var hashedPassword = await bcrypt.hash(stringpass, 12);
   var user = new users({
+    name: req.body.name,
+    number: req.body.number,
+    sex: req.body.sex,
     username: req.body.username,
     password: hashedPassword,
   });

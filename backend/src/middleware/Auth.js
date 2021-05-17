@@ -5,6 +5,7 @@ module.exports = (req, res, next) => {
   const authHeader = req.get("Authorization");
   if (!authHeader) {
     return res.json({
+      status: false,
       auth_status: false,
       message: "Not Authenticated",
       error: "Not Authenticated",
@@ -16,6 +17,7 @@ module.exports = (req, res, next) => {
     decodedToken = jwt.verify(token, "readergiant");
   } catch (err) {
     return res.json({
+      status: false,
       auth_status: false,
       message: "Error 500",
       error: "Error 500. Unable to verify admin token",

@@ -6,17 +6,27 @@ const isAuthed = async (req, res) => {
   const loggedUser = await users.findById(user_id);
   if (!loggedUser) {
     return res.json({
+      status: false,
       auth_status: false,
       message: "User Doesnt Exists",
     });
   } else {
-    const isEqual = await bcrypt.compare(req.user.password, loggedUser.password);
+    const isEqual = await bcrypt.compare(
+      req.user.password,
+      loggedUser.password
+    );
     if (isEqual)
       return res.json({
+        status: true,
         auth_status: true,
         message: "Authenticated",
       });
-    else return res.json({ auth_status: false, message: "Password mismatch" });
+    else
+      return res.json({
+        status: false,
+        auth_status: false,
+        message: "Password mismatch",
+      });
   }
 };
 module.exports = isAuthed;
