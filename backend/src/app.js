@@ -17,11 +17,13 @@ const morgan = require("morgan");
 
 const connectDB = require("./config/db");
 const routes = require("./routes");
+const authRoutes = require("./authRoutes");
+const Auth = require("./middleware/Auth");
 
 /*******
  * Defining the express app
  */
-const app = express(); 
+const app = express();
 const server = require("http").Server(app);
 
 /*******
@@ -32,5 +34,7 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 app.use("/api", routes);
+app.use("/user", Auth);
+app.use("/user", authRoutes);
 
 module.exports = server;

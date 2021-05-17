@@ -1,14 +1,11 @@
-const login = require("./controllers/login_register/login");
-const register = require("./controllers/login_register/register");
-
 const router = require("express").Router();
+
+const isAuthed = require("./controllers/isAuthed");
 
 /********
  * Defining API Endpoints (Request URL, Method and corresponding function to response)
  */
-
-router.post("/login", login);
-router.post("/register", register);
+router.post("/auth", isAuthed);
 router.get("/test", async (req, res) => {
   return res.json({ status: true });
 });
