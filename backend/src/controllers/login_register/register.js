@@ -2,6 +2,13 @@ const users = require("../../models/users");
 const bcrypt = require("bcryptjs");
 
 const register = async (req, res) => {
+  if (!req.body) return res.json({ status: false, type: "empty" });
+  const checkUser = await users.find({ username: req.body.username });
+  if (checkUser.length > 0)
+    return res.json({ status: false, type: "username" });
+  const checkNumber = await users.find({ number: req.body.number });
+  if (checkNumber.length > 0)
+    return res.json({ status: false, type: "number" });
   var stringpass = req.body.password;
   if (typeof stringpass == "number") stringpass = req.body.password.toString();
   var hashedPassword = await bcrypt.hash(stringpass, 12);

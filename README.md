@@ -19,6 +19,7 @@ A <a href="https://www.goodreads.com/">Good Reads</a> clone made using React and
     <li>react</li>
     <li>react-router-dom</li>
     <li>axios</li>
+    <li>react-loading-screen</li>
 </ul>
 
 ### Backend: NodeJs, MongoDB, ExpressJs
@@ -29,6 +30,9 @@ A <a href="https://www.goodreads.com/">Good Reads</a> clone made using React and
     <li>morgan</li>
     <li>dotenv</li>
     <li>mongoose</li>
+    <li>bcryptjs</li>
+    <li>jsonwebtoken</li>
+    <li>mongodb-memory-server</li>
 </ul>
 
 #### For Development, nodemon is used

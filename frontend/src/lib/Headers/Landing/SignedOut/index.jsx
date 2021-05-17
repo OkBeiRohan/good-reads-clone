@@ -1,22 +1,106 @@
 import React, { useState } from "react";
+import api from "../../../../services/api";
+import LoadingScreen from "react-loading-screen";
+
 import "./styles.css";
 
 function SignedOutHeader() {
   const [disable, setDisable] = useState(false);
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+  const [sex, setSex] = useState("");
   const [email, setEmail] = useState("");
+  const [emailValid, setEmailValid] = useState(true);
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [passValid, setPassValid] = useState(true);
   const [state, setState] = useState("all");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(
-      "Email: " +
-        email +
-        " and Password: " +
-        password +
-        ". Huhu you got hecked!"
+    setMessage("");
+    setLoading(true);
+    setEmailValid(true);
+    setPassValid(true);
+    var pattern = new RegExp(
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     );
+    if (!pattern.test(email)) {
+      setLoading(false);
+      setEmailValid(false);
+      setMessage("Enter a valid email address.");
+    } else if (state === "login") {
+      try {
+        const res = await api.post("/api/login", {
+          username: email,
+          password,
+        });
+        if (res.data)
+          if (res.data.status) {
+            localStorage.setItem("currentUser", JSON.stringify(res.data));
+            if (localStorage.getItem("currentUser") == null) {
+              console.log("Save Error!");
+            } // window.location.reload();
+          } else {
+            setLoading(false);
+            if (res.data.type === "username") {
+              setEmailValid(false);
+              setPassValid(false);
+              setMessage("User doesn't exist. Try creating an account!");
+            } else if (res.data.type === "password") {
+              setPassValid(false);
+              setMessage("Password is not matching with the user. Try again");
+            } else setMessage("Unknown Error Occurred!");
+          }
+        else {
+          setLoading(false);
+          setMessage("Error receiving response from server!");
+        }
+      } catch (e) {
+        setLoading(false);
+        setMessage("" + e);
+      }
+    } else {
+      if (password !== password2) {
+        setLoading(false);
+        setPassValid(false);
+        setMessage("Passwords Doesn't Match");
+      } else {
+        try {
+          const res = await api.post("/api/register", {
+            username: email,
+            password,
+            name,
+            number,
+            sex,
+          });
+          if (res.data)
+            if (res.data.status) {
+              setMessage("Registration Success. You can log in now");
+              setState("login");
+              setLoading(false);
+            } else {
+              setLoading(false);
+              if (res.data.type === "username") {
+                setEmailValid(false);
+                setPassValid(false);
+                setMessage("User already exists. Try Logging In!");
+              } else if (res.data.type === "number")
+                setMessage("Mobile number already registered. Try logging in!");
+              else setMessage("Unknown Error Occurred!");
+            }
+          else {
+            setLoading(false);
+            setMessage("Error receiving response from server!");
+          }
+        } catch (e) {
+          setLoading(false);
+          setMessage("" + e);
+        }
+      }
+    }
   };
 
   return (
@@ -41,6 +125,14 @@ function SignedOutHeader() {
           </div>
           <div className="headerSOContent">
             <div id="createAccount">
+              <LoadingScreen
+                loading={loading}
+                bgColor="#f1f1f1"
+                spinnerColor="#9ee5f8"
+                textColor="#676767"
+                logoSrc="/assets/img/logo.png"
+                text=""
+              />
               {state === "all" ? (
                 <>
                   <h2>Discover &amp; read more</h2>
@@ -185,7 +277,11 @@ function SignedOutHeader() {
                       <form onSubmit={handleSubmit}>
                         <input
                           type="text"
-                          className="login-input"
+                          className={
+                            emailValid
+                              ? "login-input"
+                              : "login-input inputerror"
+                          }
                           placeholder="Enter Your Email ID"
                           value={email}
                           onChange={(e) => {
@@ -195,7 +291,9 @@ function SignedOutHeader() {
                         />
                         <input
                           type="password"
-                          className="login-input"
+                          className={
+                            passValid ? "login-input" : "login-input inputerror"
+                          }
                           placeholder="Enter Your Password"
                           value={password}
                           onChange={(e) => {
@@ -233,6 +331,11 @@ function SignedOutHeader() {
                               setMessage("");
                               setEmail("");
                               setPassword("");
+                              setPassword2("");
+                              setName("");
+                              setNumber("");
+                              setEmailValid(true);
+                              setPassValid(true);
                             }}
                             href="##"
                           >
@@ -248,12 +351,86 @@ function SignedOutHeader() {
                   <h2>Create an Account</h2>
                   <div>
                     <div id="signInUsingContent">
-                      <div
-                        className="signupbutton appleLoginButton"
-                        style={{ fontWeight: "700" }}
-                      >
-                        Sign Up
-                      </div>
+                      <form onSubmit={handleSubmit}>
+                        <input
+                          type="text"
+                          className="login-input"
+                          placeholder="Enter Your Name"
+                          value={name}
+                          onChange={(e) => {
+                            setName(e.target.value);
+                          }}
+                          required
+                        />
+                        <input
+                          type="text"
+                          className="login-input"
+                          placeholder="Enter Your Mobile Number"
+                          value={number}
+                          onChange={(e) => {
+                            setNumber(e.target.value);
+                          }}
+                          required
+                        />
+                        <select
+                          className="login-input"
+                          onChange={(e) => setSex(e.target.value)}
+                          defaultValue="false"
+                          style={{ cursor: "pointer" }}
+                        >
+                          <option value="false" disabled>
+                            Select Your Gender
+                          </option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="NA">Prefer Not To Say</option>
+                        </select>
+                        <input
+                          type="email"
+                          className={
+                            emailValid
+                              ? "login-input"
+                              : "login-input inputerror"
+                          }
+                          placeholder="Enter Your Email ID"
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                          }}
+                          required
+                        />
+                        <input
+                          type="password"
+                          className={
+                            passValid ? "login-input" : "login-input inputerror"
+                          }
+                          placeholder="Enter Your Password"
+                          value={password}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                          }}
+                          required
+                        />
+                        <input
+                          type="password"
+                          className={
+                            passValid ? "login-input" : "login-input inputerror"
+                          }
+                          placeholder="Re-Enter Your Password"
+                          value={password2}
+                          onChange={(e) => {
+                            setPassword2(e.target.value);
+                          }}
+                          required
+                        />
+                        <button
+                          type="submit"
+                          className="signupbutton appleLoginButton"
+                          style={{ fontWeight: "700" }}
+                        >
+                          Register
+                        </button>
+                      </form>
                       <div
                         style={{
                           textAlign: "center",
@@ -277,6 +454,8 @@ function SignedOutHeader() {
                             setMessage("");
                             setEmail("");
                             setPassword("");
+                            setEmailValid(true);
+                            setPassValid(true);
                           }}
                           href="##"
                         >
