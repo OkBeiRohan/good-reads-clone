@@ -1,0 +1,114 @@
+.siteHeader {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 70;
+  pointer-events: none;
+}
+
+@media (max-width: 1199px) {
+  .siteHeader__topLine {
+    position: relative;
+    z-index: 2;
+  }
+}
+.siteHeader__topLine {
+  background: #f4f1ea;
+  pointer-events: auto;
+}
+
+.gr-box--withShadow {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 15%);
+}
+
+.siteHeader__contents {
+  box-sizing: border-box;
+  height: 50px;
+  margin: 0 auto;
+  width: 100%;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: flex;
+}
+
+.siteHeader__topLevelItem--searchIcon {
+  display: none;
+}
+.siteHeader__topLevelItem {
+  display: inline-block;
+}
+.siteHeader__contents *,
+.siteHeader__contents *:before,
+.siteHeader__contents *:after {
+  box-sizing: inherit;
+}
+
+.siteHeader__contents *,
+.siteHeader__contents *:before,
+.siteHeader__contents *:after {
+  box-sizing: inherit;
+}
+.siteHeader__searchIcon {
+  height: 19px;
+  width: 18px;
+  background: url(/assets/layout/header/icn_nav_search_black.svg) no-repeat;
+}
+.gr-iconButton {
+  -moz-appearance: none;
+  -o-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  color: #767676;
+  cursor: pointer;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+input {
+  line-height: normal;
+}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+}
+user agent stylesheet button {
+  appearance: auto;
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: -internal-light-dark(black, white);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+  box-sizing: border-box;
+  margin: 0em;
+  font: 400 13.3333px Arial;
+  padding: 1px 6px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+  border-image: initial;
+}

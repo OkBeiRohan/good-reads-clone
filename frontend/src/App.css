@@ -45,6 +45,7 @@ th {
   background-repeat: no-repeat;
   background-size: auto 295px;
   min-width: 970px;
+  transition: 0.5s ease;
 }
 
 .headerNavSO {
@@ -56,6 +57,7 @@ th {
   background-position: center;
   background-repeat: repeat-x;
   background-color: #f4f2e9;
+  transition: 0.5s ease;
 }
 
 .headerContainerSO {
@@ -63,10 +65,12 @@ th {
   text-align: left;
   width: 970px;
   position: relative;
+  transition: 0.5s ease;
 }
 .navBarSO {
   height: 65px;
   padding-top: 10px;
+  transition: 0.5s ease;
 }
 
 .headerSOContent {
@@ -75,6 +79,7 @@ th {
   z-index: 1;
   right: 0;
   top: 0;
+  transition: 0.5s ease;
 }
 
 #createAccount {
@@ -95,4 +100,5 @@ th {
   padding-top: 4px;
   padding-bottom: 14px;
   text-align: center;
+  transition: 0.5s ease;
 }

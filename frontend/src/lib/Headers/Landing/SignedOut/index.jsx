@@ -42,7 +42,8 @@ function SignedOutHeader() {
             localStorage.setItem("currentUser", JSON.stringify(res.data));
             if (localStorage.getItem("currentUser") == null) {
               console.log("Save Error!");
-            } // window.location.reload();
+            }
+            window.location.reload();
           } else {
             setLoading(false);
             if (res.data.type === "username") {
