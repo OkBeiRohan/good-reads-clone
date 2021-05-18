@@ -28,7 +28,6 @@ const login = async (req, res, next) => {
       {
         user_id: loadedUser._id.toString(),
         username: loadedUser.username.toString(),
-        password: password.toString(),
       },
       "readergiant",
       { expiresIn: "7d" }

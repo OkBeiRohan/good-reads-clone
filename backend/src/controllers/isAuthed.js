@@ -23,16 +23,6 @@ const isAuthed = async (req, res) => {
         auth_status: false,
         message: "Auth Failed",
       });
-    const isEqual = await bcrypt.compare(
-      req.user.password,
-      loggedUser.password
-    );
-    if (isEqual)
-      return res.json({
-        status: true,
-        auth_status: true,
-        message: "Authenticated",
-      });
     else
       return res.json({
         status: false,

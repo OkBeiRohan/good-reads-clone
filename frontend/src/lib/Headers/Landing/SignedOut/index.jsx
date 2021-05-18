@@ -216,6 +216,12 @@ function SignedOutHeaderLanding() {
                       >
                         Sign up with email
                       </div>
+                      <a
+                        className="signupbutton appleLoginButton"
+                        href="/discover"
+                      >
+                        Continue without signing in
+                      </a>
                       <div
                         style={{
                           textAlign: "center",
