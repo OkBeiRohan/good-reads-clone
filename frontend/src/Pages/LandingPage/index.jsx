@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SignedOutHeader from "../../lib/Headers/Landing/SignedOut";
 import SignedInHeader from "../../lib/Headers/Landing/SignedIn";
-import api from "../../services/api";
-import { useHistory } from "react-router-dom";
 import LoadingScreen from "react-loading-screen";
 import "./styles.css";
 
@@ -11,46 +9,8 @@ function LandingPage() {
 
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
-  const history = useHistory();
 
-  useEffect(() => {
-    async function checkAuth(jwt) {
-      try {
-        const res = await api.post(
-          "/user/auth",
-          {},
-          {
-            headers: { Authorization: `Bearer ${jwt.token}` },
-          }
-        );
-        if (res.data.auth_status) {
-          setTimeout(() => {
-            setLoading(false);
-          }, [1000]);
-          setSignedIn(true);
-        } else {
-          setLoading(false);
-          localStorage.removeItem("currentUser");
-        }
-      } catch (e) {
-        localStorage.removeItem("currentUser");
-        setTimeout(() => {
-          setLoading(false);
-        }, [500]);
-      }
-    }
-    if (localStorage.getItem("currentUser") !== null) {
-      setLoading(true);
-      const obj = localStorage.getItem("currentUser");
-      const jwt = JSON.parse(obj);
-      checkAuth(jwt);
-      // localStorage.removeItem("currentUser");
-    } else {
-      setTimeout(() => {
-        setLoading(false);
-      }, [500]);
-    }
-  }, [history]);
+  useEffect(() => {}, []);
 
   return (
     <>
