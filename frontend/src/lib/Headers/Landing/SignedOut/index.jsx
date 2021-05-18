@@ -4,7 +4,7 @@ import LoadingScreen from "react-loading-screen";
 
 import "./styles.css";
 
-function SignedOutHeader() {
+function SignedOutHeaderLanding() {
   const [disable, setDisable] = useState(false);
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -478,4 +478,4 @@ function SignedOutHeader() {
   );
 }
 
-export default SignedOutHeader;
+export default SignedOutHeaderLanding;

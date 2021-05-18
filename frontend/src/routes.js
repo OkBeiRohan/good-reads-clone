@@ -9,7 +9,7 @@ export default function Routes() {
     <Router>
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        <Route exact path="/user/:user/:id" component={UserPage} />
+        <Route exact path="/user/:id" component={UserPage} />
         <Route component={ErrorPage} />
       </Switch>
     </Router>

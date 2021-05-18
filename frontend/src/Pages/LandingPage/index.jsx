@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import SignedOutHeader from "../../lib/Headers/Landing/SignedOut";
-import SignedInHeader from "../../lib/Headers/Landing/SignedIn";
+import SignedInHeader from "../../lib/Headers/Common/SignedIn";
 import LoadingScreen from "react-loading-screen";
+import checkAuth from "../../services/auth";
 import "./styles.css";
 
 function LandingPage() {
@@ -10,7 +11,16 @@ function LandingPage() {
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    async function auth() {
+      const res = await checkAuth();
+      setSignedIn(res.signedIn);
+      setTimeout(() => {
+        setLoading(res.loading);
+      }, [1000]);
+    }
+    auth();
+  }, []);
 
   return (
     <>

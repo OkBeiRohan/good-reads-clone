@@ -1,40 +1,59 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
-import SignedInHeader from "../../lib/Headers/Landing/SignedIn";
-import SignedOutHeader from "../../lib/Headers/Landing/SignedOut";
+import SignedInHeader from "../../lib/Headers/Common/SignedIn";
+import SignedOutHeader from "../../lib/Headers/Common/SignedOut";
+import checkAuth from "../../services/auth";
+import LoadingScreen from "react-loading-screen";
 
 function UserPage({
   match: {
-    params: { id, user },
+    params: { id },
   },
 }) {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [signedIn, setSignedIn] = useState(false);
+
+  document.title = data
+    ? data.data.name + " - Reader Giants' Community"
+    : "Reader Giant";
 
   useEffect(() => {
     async function getUser() {
       try {
         const res = await api.post("/api/user", {
           id,
-          name: user,
         });
-        if (res.data) {
-          console.log(res.data);
-          setData(res.data);
-        } else setData({ status: false, type: "nodata" });
+        if (res.data) setData(res.data);
+        else setData({ status: false, type: "nodata" });
       } catch (e) {
         setData({ status: false, type: "error", error: "" + e });
       }
     }
     getUser();
-  }, [id, user]);
+
+    async function auth() {
+      const res = await checkAuth();
+      setSignedIn(res.signedIn);
+      setTimeout(() => {
+        setLoading(res.loading);
+      }, [1000]);
+    }
+    auth();
+  }, [id]);
 
   return (
     <>
-      <h1>
-        User : {user}
-        <br />
-        ID: {id}
-      </h1>
+      <LoadingScreen
+        loading={loading}
+        bgColor="#f1f1f1"
+        spinnerColor="#9ee5f8"
+        textColor="#676767"
+        logoSrc="/assets/img/logo.png"
+        text=""
+      />
+      {signedIn ? <SignedInHeader /> : <SignedOutHeader />}
+      <h1>ID: {id}</h1>
       <br />
       <br />
       {data !== null ? (
