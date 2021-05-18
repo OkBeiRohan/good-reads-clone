@@ -44,6 +44,7 @@ function LandingPage() {
       const obj = localStorage.getItem("currentUser");
       const jwt = JSON.parse(obj);
       checkAuth(jwt);
+      // localStorage.removeItem("currentUser");
     } else {
       setTimeout(() => {
         setLoading(false);
