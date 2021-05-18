@@ -1,19 +1,27 @@
 import React, { useState } from "react";
 import api from "../../../../services/api";
-import LoadingScreen from "react-loading-screen";
 
 import "./styles.css";
 
 function SignedInHeader() {
   return (
-    <LoadingScreen
-      loading={true}
-      bgColor="#f1f1f1"
-      spinnerColor="#9ee5f8"
-      textColor="#676767"
-      logoSrc="/assets/img/logo.png"
-      text="Signed In"
-    />
+    <div id="signedInHeader">
+      <div className="HeaderLogo">
+        <img src="/assets/img/logo.png" alt="Reader Giants" />
+      </div>
+      <div className="NavMenu">
+        <div className="NavButton">
+          <div className="NavButtonText">Home</div>
+        </div>
+        <div className="NavButton">
+          <div className="NavButtonText">My Books</div>
+        </div>
+        <div className="NavButton">
+          <div className="NavButtonText">Browse</div>
+          <div className="NavContent"></div>
+        </div>
+      </div>
+    </div>
   );
 }
 
