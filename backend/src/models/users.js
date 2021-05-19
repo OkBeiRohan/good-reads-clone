@@ -43,6 +43,9 @@ const users = new Schema(
       type: String,
       required: true,
     },
+    avatar: {
+      type: String,
+    },
     status: {
       account: { type: Boolean, required: true, default: true },
       contributions: {

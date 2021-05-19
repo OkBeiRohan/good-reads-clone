@@ -4,6 +4,7 @@ import SignedInHeader from "../../lib/Headers/Common/SignedIn";
 import LoadingScreen from "react-loading-screen";
 import checkAuth from "../../services/auth";
 import "./styles.css";
+import ViewBooks from "../../lib/Books/ViewBooks";
 
 function LandingPage() {
   document.title = "Reader Giant - We know what you'll love!";
@@ -32,7 +33,14 @@ function LandingPage() {
         logoSrc="/assets/img/logo.png"
         text=""
       />
-      {signedIn ? <SignedInHeader /> : <SignedOutHeaderLanding />}
+      {signedIn ? (
+        <>
+          <SignedInHeader />
+          <ViewBooks genre="all" />
+        </>
+      ) : (
+        <SignedOutHeaderLanding />
+      )}
     </>
   );
 }
