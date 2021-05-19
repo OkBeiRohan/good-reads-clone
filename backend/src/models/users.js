@@ -43,9 +43,6 @@ const users = new Schema(
       type: String,
       required: true,
     },
-    token: {
-      type: String,
-    },
     status: {
       account: { type: Boolean, required: true, default: true },
       contributions: {

@@ -11,23 +11,10 @@ const isAuthed = async (req, res) => {
       message: "User Doesnt Exists",
     });
   } else {
-    if (!loggedUser.token)
-      return res.json({
-        status: false,
-        auth_status: false,
-        message: "Auth Failed",
-      });
-    else if (loggedUser.token !== req.token)
-      return res.json({
-        status: false,
-        auth_status: false,
-        message: "Auth Failed",
-      });
-    else
-      return res.json({
-        status: true,
-        auth_status: true,
-      });
+    return res.json({
+      status: true,
+      auth_status: true,
+    });
   }
 };
 module.exports = isAuthed;

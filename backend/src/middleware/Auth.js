@@ -32,6 +32,5 @@ module.exports = (req, res, next) => {
     });
   }
   req.user = decodedToken;
-  req.token = token;
   next();
 };

@@ -32,9 +32,7 @@ const login = async (req, res, next) => {
       "readergiant",
       { expiresIn: "7d" }
     );
-    user.token = token;
     try {
-      await user.save();
       console.log("New Login: " + token);
       return res.status(200).json({ status: true, token: token });
     } catch (e) {
