@@ -16,13 +16,20 @@ function PrivateRoute({ component: Component, ...rest }) {
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
 
+  checkAuth().then((res) => {
+    setSignedIn(res.signedIn);
+    setTimeout(() => {
+      setLoading(res.loading);
+    }, [500]);
+  });
+
   return (
     <Route
       {...rest}
       render={({ location }) =>
         loading ? (
           <LoadingScreen
-            loading={true}
+            loading={loading}
             bgColor="#f1f1f1"
             spinnerColor="#9ee5f8"
             textColor="#676767"
