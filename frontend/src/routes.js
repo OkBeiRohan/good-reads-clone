@@ -11,6 +11,7 @@ import ErrorPage from "./Pages/ErrorPage";
 import LandingPage from "./Pages/LandingPage";
 import UserPage from "./Pages/UserPage";
 import LoadingScreen from "react-loading-screen";
+import GenreSearch from "./Pages/DiscoverPage";
 
 function PrivateRoute({ component: Component, ...rest }) {
   const [loading, setLoading] = useState(true);
@@ -59,6 +60,7 @@ export default function Routes() {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/discover" component={DiscoverPage} />
+        <Route exact path="/genre/:genre" component={GenreSearch} />
         <Route exact path="/user/:id" component={UserPage} />
         <PrivateRoute
           exact
