@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SignedOutHeader from "../../lib/Headers/Landing/SignedOut";
+import SignedOutHeaderLanding from "../../lib/Headers/Landing/SignedOut";
 import SignedInHeader from "../../lib/Headers/Common/SignedIn";
 import LoadingScreen from "react-loading-screen";
 import checkAuth from "../../services/auth";
@@ -32,7 +32,7 @@ function LandingPage() {
         logoSrc="/assets/img/logo.png"
         text=""
       />
-      {signedIn ? <SignedInHeader /> : <SignedOutHeader />}
+      {signedIn ? <SignedInHeader /> : <SignedOutHeaderLanding />}
     </>
   );
 }

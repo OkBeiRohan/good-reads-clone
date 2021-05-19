@@ -52,12 +52,16 @@
   box-shadow: 0px 4px 20px 2px #a1a1a1;
   background-color: white;
   padding: 0px 15px 15px 15px;
-  width: 70px;
+  width: 40px;
   top: 40px;
   transition: 2s ease;
+  text-decoration: none;
 }
 .NavContent_Profile:hover {
   display: flex;
+}
+.NavContent_Profile div:hover {
+  text-decoration: underline;
 }
 .DropDownMenu {
   height: 100%;

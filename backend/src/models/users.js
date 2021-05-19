@@ -11,7 +11,7 @@ const users = new Schema(
         books: [
           {
             type: Schema.Types.ObjectId,
-            ref: "Books",
+            ref: "books",
           },
         ],
         genres: [
@@ -24,13 +24,13 @@ const users = new Schema(
         books: [
           {
             type: Schema.Types.ObjectId,
-            ref: "Books",
+            ref: "books",
           },
         ],
         reviews: [
           {
             type: Schema.Types.ObjectId,
-            ref: "Books",
+            ref: "books",
           },
         ],
       },

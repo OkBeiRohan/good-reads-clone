@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from "../../../../services/api";
+// import api from "../../../../services/api";
 
 import "./styles.css";
 
@@ -20,7 +20,7 @@ function SignedOutHeader() {
           <a href="/">Genre2</a>
         </div>
       </div>
-      <form action={"/search/" + search} className="SearchBar">
+      <form action={"/search/" + search} method="post" className="SearchBar">
         <input
           className="SearchBarInput"
           type="text"

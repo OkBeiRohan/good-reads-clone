@@ -52,7 +52,7 @@ function SignedInHeader() {
         Profile
         <div className="NavContent_Profile">
           <div style={{ marginTop: "10px" }} onClick={signout}>
-            Sign Out
+            Logout
           </div>
         </div>
       </div>

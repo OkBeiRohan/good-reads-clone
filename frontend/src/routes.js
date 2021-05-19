@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -16,12 +16,14 @@ function PrivateRoute({ component: Component, ...rest }) {
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
 
-  checkAuth().then((res) => {
-    setSignedIn(res.signedIn);
-    setTimeout(() => {
-      setLoading(res.loading);
-    }, [500]);
-  });
+  useEffect(() => {
+    checkAuth().then((res) => {
+      setSignedIn(res.signedIn);
+      setTimeout(() => {
+        setLoading(res.loading);
+      }, [500]);
+    });
+  }, []);
 
   return (
     <Route
