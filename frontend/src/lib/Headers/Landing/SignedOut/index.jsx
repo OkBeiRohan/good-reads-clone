@@ -3,6 +3,7 @@ import api from "../../../../services/api";
 import LoadingScreen from "react-loading-screen";
 
 import "./styles.css";
+import { Redirect, useLocation } from "react-router";
 
 function SignedOutHeaderLanding() {
   const [disable, setDisable] = useState(false);
@@ -14,9 +15,11 @@ function SignedOutHeaderLanding() {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [passValid, setPassValid] = useState(true);
-  const [state, setState] = useState("all");
+  const [state2, setState] = useState("all");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const { state } = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +34,7 @@ function SignedOutHeaderLanding() {
       setLoading(false);
       setEmailValid(false);
       setMessage("Enter a valid email address.");
-    } else if (state === "login") {
+    } else if (state2 === "login") {
       try {
         const res = await api.post("/api/login", {
           username: email,
@@ -43,7 +46,8 @@ function SignedOutHeaderLanding() {
             if (localStorage.getItem("currentUser") == null) {
               console.log("Save Error!");
             }
-            window.location.reload();
+            if (state?.from) return <Redirect to={state.from} />;
+            else window.location.reload();
           } else {
             setLoading(false);
             if (res.data.type === "username") {
@@ -134,7 +138,7 @@ function SignedOutHeaderLanding() {
                 logoSrc="/assets/img/logo.png"
                 text=""
               />
-              {state === "all" ? (
+              {state2 === "all" ? (
                 <>
                   <h2>Discover &amp; read more</h2>
                   <div>
@@ -276,7 +280,7 @@ function SignedOutHeaderLanding() {
                     </div>
                   </div>
                 </>
-              ) : state === "login" ? (
+              ) : state2 === "login" ? (
                 <div className="accountActions">
                   <h2>Log In</h2>
                   <div>

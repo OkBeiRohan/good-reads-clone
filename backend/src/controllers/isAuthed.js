@@ -25,9 +25,8 @@ const isAuthed = async (req, res) => {
       });
     else
       return res.json({
-        status: false,
-        auth_status: false,
-        message: "Password mismatch",
+        status: true,
+        auth_status: true,
       });
   }
 };
