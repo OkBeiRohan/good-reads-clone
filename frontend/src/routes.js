@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -10,15 +10,26 @@ import DiscoverPage from "./Pages/DiscoverPage";
 import ErrorPage from "./Pages/ErrorPage";
 import LandingPage from "./Pages/LandingPage";
 import UserPage from "./Pages/UserPage";
+import LoadingScreen from "react-loading-screen";
 
-async function PrivateRoute({ component: Component, ...rest }) {
-  const { signedIn } = await checkAuth();
-  console.log(signedIn);
+function PrivateRoute({ component: Component, ...rest }) {
+  const [loading, setLoading] = useState(true);
+  const [signedIn, setSignedIn] = useState(false);
+
   return (
     <Route
       {...rest}
-      render={({ location }) => {
-        return true ? (
+      render={({ location }) =>
+        loading ? (
+          <LoadingScreen
+            loading={true}
+            bgColor="#f1f1f1"
+            spinnerColor="#9ee5f8"
+            textColor="#676767"
+            logoSrc="/assets/img/logo.png"
+            text=""
+          />
+        ) : signedIn ? (
           <Component />
         ) : (
           <Redirect
@@ -27,8 +38,8 @@ async function PrivateRoute({ component: Component, ...rest }) {
               state: { from: location },
             }}
           />
-        );
-      }}
+        )
+      }
     />
   );
 }
