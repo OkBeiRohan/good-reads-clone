@@ -29,7 +29,7 @@ const login = async (req, res, next) => {
         user_id: loadedUser._id.toString(),
         username: loadedUser.username.toString(),
       },
-      "readergiant",
+      process.env.JWT_KEY,
       { expiresIn: "7d" }
     );
     try {
