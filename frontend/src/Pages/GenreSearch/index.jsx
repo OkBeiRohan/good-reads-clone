@@ -5,7 +5,11 @@ import LoadingScreen from "react-loading-screen";
 import checkAuth from "../../services/auth";
 import ViewBooks from "../../lib/Books/ViewBooks";
 
-function DiscoverPage() {
+function GenreSearch({
+  match: {
+    params: { genre },
+  },
+}) {
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
 
@@ -31,9 +35,9 @@ function DiscoverPage() {
         text=""
       />
       {signedIn ? <SignedInHeader /> : <SignedOutHeader />}
-      <ViewBooks genre="all" />
+      <ViewBooks genre={genre} />
     </>
   );
 }
 
-export default DiscoverPage;
+export default GenreSearch;

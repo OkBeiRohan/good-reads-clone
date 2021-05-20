@@ -11,7 +11,7 @@ import ErrorPage from "./Pages/ErrorPage";
 import LandingPage from "./Pages/LandingPage";
 import UserPage from "./Pages/UserPage";
 import LoadingScreen from "react-loading-screen";
-import GenreSearch from "./Pages/DiscoverPage";
+import GenreSearch from "./Pages/GenreSearch";
 
 function PrivateRoute({ component: Component, ...rest }) {
   const [loading, setLoading] = useState(true);
