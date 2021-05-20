@@ -3,10 +3,14 @@ import SignedOutHeader from "../../lib/Headers/Common/SignedOut";
 import SignedInHeader from "../../lib/Headers/Common/SignedIn";
 import LoadingScreen from "react-loading-screen";
 import checkAuth from "../../services/auth";
-import ViewBooks from "../../lib/Books/ViewBooks";
+import BookDetails from "../../lib/Books/BookDetails";
 
-function DiscoverPage() {
-  document.title = "Discover - Reader Giant";
+function BookDetailsPage({
+  match: {
+    params: { isbn },
+  },
+}) {
+  document.title = "Book - Reader Giant";
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
 
@@ -32,9 +36,9 @@ function DiscoverPage() {
         text=""
       />
       {signedIn ? <SignedInHeader /> : <SignedOutHeader />}
-      <ViewBooks genre="all" />
+      <BookDetails isbn={isbn} />
     </>
   );
 }
 
-export default DiscoverPage;
+export default BookDetailsPage;

@@ -10,6 +10,10 @@ function GenreSearch({
     params: { genre },
   },
 }) {
+  document.title =
+    genre === "all"
+      ? "Top Rated Books - Reader Giant"
+      : "Best " + genre + " books - Reader Giant";
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
 

@@ -11,13 +11,15 @@ function SignedOutHeader() {
       <div className="HeaderLogo">
         <img src="/assets/img/logo.png" alt="Reader Giants" />
       </div>
-      <div className="NavButton">Home</div>
+      <div className="NavButton">
+        <a href="/">Home</a>
+      </div>
       <div className="NavButton">My Books</div>
       <div className="NavButton DropDownMenu">
         Browse
         <div className="NavContent">
-          <a href="/">Genres</a>
-          <a href="/">Genre2</a>
+          <a href="/genres/fiction">Fiction</a>
+          <a href="/genres/action">Action</a>
         </div>
       </div>
       <form action={"/search/" + search} method="post" className="SearchBar">
@@ -29,6 +31,8 @@ function SignedOutHeader() {
           onChange={(e) => {
             setSearch(e.target.value);
           }}
+          minLength="3"
+          required
         />
         <button
           type="submit"

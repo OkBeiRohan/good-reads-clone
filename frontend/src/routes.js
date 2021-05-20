@@ -12,6 +12,11 @@ import LandingPage from "./Pages/LandingPage";
 import UserPage from "./Pages/UserPage";
 import LoadingScreen from "react-loading-screen";
 import GenreSearch from "./Pages/GenreSearch";
+import BookDetailsPage from "./Pages/BookDetailsPage";
+import BookSearchPage from "./Pages/AddBookPage";
+import AddBookPage from "./Pages/AddBookPage";
+import MyReviewsPage from "./Pages/MyReviewsPage";
+import MyBooksPage from "./Pages/MyBooksPage";
 
 function PrivateRoute({ component: Component, ...rest }) {
   const [loading, setLoading] = useState(true);
@@ -60,13 +65,13 @@ export default function Routes() {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/discover" component={DiscoverPage} />
-        <Route exact path="/genre/:genre" component={GenreSearch} />
+        <Route exact path="/genres/:genre" component={GenreSearch} />
         <Route exact path="/user/:id" component={UserPage} />
-        <PrivateRoute
-          exact
-          path="/discover/loggedin"
-          component={DiscoverPage}
-        />
+        <Route exact path="/book/:isbn" component={BookDetailsPage} />
+        <Route exact path="/search/:query" component={BookSearchPage} />
+        <PrivateRoute exact path="/addbook" component={AddBookPage} />
+        <PrivateRoute exact path="/myreviews" component={MyReviewsPage} />
+        <PrivateRoute exact path="/mybooks" component={MyBooksPage} />
         <Route component={ErrorPage} />
       </Switch>
     </Router>

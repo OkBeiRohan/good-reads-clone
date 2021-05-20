@@ -16,13 +16,17 @@ function SignedInHeader() {
       <div className="HeaderLogo">
         <img src="/assets/img/logo.png" alt="Reader Giants" />
       </div>
-      <div className="NavButton">Home</div>
-      <div className="NavButton">My Books</div>
+      <div className="NavButton">
+        <a href="/">Home</a>
+      </div>
+      <div className="NavButton">
+        <a href="/mybooks">My Books</a>
+      </div>
       <div className="NavButton DropDownMenu">
         Browse
         <div className="NavContent">
-          <a href="/">Genres</a>
-          <a href="/">Genre2</a>
+          <a href="/genres/fiction">Fiction</a>
+          <a href="/genres/action">Action</a>
         </div>
       </div>
       <form action={"/search/" + search} className="SearchBar">
@@ -46,11 +50,18 @@ function SignedInHeader() {
         ></button>
       </form>
 
-      <div className="NavButton">Add Book</div>
-      <div className="NavButton">My Reviews</div>
+      <div className="NavButton">
+        <a href="/addbook">Add Book</a>
+      </div>
+      <div className="NavButton">
+        <a href="/myreviews">My Reviews</a>
+      </div>
       <div className="NavButton DropDownMenu2">
         Profile
         <div className="NavContent_Profile">
+          <a style={{ marginTop: "10px" }} href="/user">
+            My Profile
+          </a>
           <div style={{ marginTop: "10px" }} onClick={signout}>
             Logout
           </div>
