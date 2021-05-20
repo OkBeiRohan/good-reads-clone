@@ -14,7 +14,7 @@ function UserPage({
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
 
-  document.title = data
+  document.title = data.data.name
     ? data.data.name + " - Reader Giants' Community"
     : "Reader Giant";
 
