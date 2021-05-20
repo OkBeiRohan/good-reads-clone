@@ -11,18 +11,17 @@ const addReview = async (req, res) => {
     if (!findUser) return res.json({ status: false, type: "userdoesntexists" });
 
     const isReviewed = findUser.userdata.contributions.reviews.find((value) => {
-      if (value.toString() === findBook._id.toString()) return true;
+      if (value.book.toString() === findBook._id.toString()) return true;
       else return false;
     });
-    console.log(isReviewed);
-    return res.json({ sheda: "shad" });
+    if (isReviewed) return res.json({ status: false, type: "exists" });
+
     findBook.reviews.push({
       user_id: req.body.user_id,
       rating: req.body.rating,
       comment: req.body.comment,
       res_upvotes: 0,
       date: new Date(),
-      pos: findBook.reviews.length,
     });
 
     findBook.avg_rating =
@@ -41,4 +40,8 @@ const editReview = async (req, res) => {
   return res.json({ status: false });
 };
 
-module.exports = { addReview, editReview };
+const removeReview = async (req, res) => {
+  return res.json({ status: false });
+};
+
+module.exports = { addReview, editReview, removeReview };

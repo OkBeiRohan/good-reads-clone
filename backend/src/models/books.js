@@ -21,7 +21,6 @@ const books = new Schema(
         downvotes: [{ type: Schema.Types.ObjectId, ref: "users" }],
         res_upvotes: { type: Number, default: 0 },
         date: Date,
-        pos: { type: Number },
       },
     ],
     avg_rating: { type: Number, required: true, default: 0 },

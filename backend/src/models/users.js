@@ -29,8 +29,11 @@ const users = new Schema(
         ],
         reviews: [
           {
-            type: Schema.Types.ObjectId,
-            ref: "books",
+            book: {
+              type: Schema.Types.ObjectId,
+              ref: "books",
+            },
+            review: { type: Schema.Types.ObjectId },
           },
         ],
       },
