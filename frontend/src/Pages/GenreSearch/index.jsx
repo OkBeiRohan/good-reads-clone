@@ -37,7 +37,9 @@ function GenreSearch({
         textColor="#676767"
         logoSrc="/assets/img/logo.png"
         text=""
-      />
+      >
+        <></>
+      </LoadingScreen>
       {signedIn ? <SignedInHeader /> : <SignedOutHeader />}
       <ViewBooks genre={genre} />
     </>

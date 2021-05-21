@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import api from "../../../services/api";
+import StarRatings from "react-star-ratings";
+import checkAuth from "../../../services/auth";
 
 import "./styles.css";
 
 function BookDetails({ isbn }) {
   const [data, setData] = useState(null);
   const [signedIn, setSignedIn] = useState(false);
+  const [reviewed, setReviewed] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [message, setMessage] = useState("");
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     async function getData() {
@@ -15,6 +22,12 @@ function BookDetails({ isbn }) {
       } catch (e) {}
     }
     getData();
+    async function auth() {
+      const res = await checkAuth();
+      setSignedIn(res.signedIn);
+      if (res.signedIn) setToken(res.token);
+    }
+    auth();
   }, [isbn]);
 
   document.title = data
@@ -23,6 +36,36 @@ function BookDetails({ isbn }) {
       : "Reader Giant"
     : "Reader Giant";
 
+  const submitReview = async () => {
+    if (rating === "0") {
+      setMessage("Please select a rating!");
+      return;
+    }
+    try {
+      const res = await api.post(
+        "/user/addreview",
+        {
+          rating,
+          message,
+          ibn: data.data.ibn,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (res.data.status) {
+        setMessage("Review added. Thankyou for your contribution");
+        setReviewed(true);
+      } else if (res.data.type === "exists")
+        setMessage("You have already reviewed for this title");
+      else if (res.data.auth_status === false) {
+        setMessage("Authentication Error! Try refreshing!");
+        return;
+      } else setMessage("Unknown Error Occurred!");
+    } catch (e) {
+      setMessage("" + e);
+    }
+  };
   return (
     <div className="mainContentContainer">
       <div className="mainContent">
@@ -44,46 +87,14 @@ function BookDetails({ isbn }) {
                       data.data.reviews.length > 0 ? (
                         <>
                           <div className="bookRating">
-                            <span
-                              size="12x12"
-                              className={
-                                data.data.avg_rating >= 1
-                                  ? "staticStar p10"
-                                  : "staticStar p0"
-                              }
-                            ></span>
-                            <span
-                              size="12x12"
-                              className={
-                                data.data.avg_rating >= 2
-                                  ? "staticStar p10"
-                                  : "staticStar p0"
-                              }
-                            ></span>
-                            <span
-                              size="12x12"
-                              className={
-                                data.data.avg_rating >= 3
-                                  ? "staticStar p10"
-                                  : "staticStar p0"
-                              }
-                            ></span>
-                            <span
-                              size="12x12"
-                              className={
-                                data.data.avg_rating >= 4
-                                  ? "staticStar p10"
-                                  : "staticStar p0"
-                              }
-                            ></span>
-                            <span
-                              size="12x12"
-                              className={
-                                data.data.avg_rating >= 5
-                                  ? "staticStar p10"
-                                  : "staticStar p0"
-                              }
-                            ></span>
+                            <StarRatings
+                              rating={data.data.avg_rating}
+                              starRatedColor="orange"
+                              starDimension="15px"
+                              starSpacing="0px"
+                              numberOfStars={5}
+                              name="rating"
+                            />
                           </div>{" "}
                           <span style={{ color: "rgb(123 123 123)" }}>
                             {data.data.avg_rating}
@@ -108,7 +119,7 @@ function BookDetails({ isbn }) {
                       </div>
                       <div className="bookGenres">
                         {data.data.genre.map((genre, index) => (
-                          <a href={`/genres/${genre}`}>
+                          <a key={index} href={`/genres/${genre}`}>
                             {genre}
                             {index !== data.data.genre.length - 1 ? "," : ""}
                           </a>
@@ -130,7 +141,71 @@ function BookDetails({ isbn }) {
                       Buy Now
                     </a>
                   </div>
-                  <div className="bookReviews"></div>
+                  <div className="bookReviews">
+                    <div className="reviewHeader">
+                      <h2>Reviews</h2>
+                    </div>
+                    <div className="reviews">
+                      {signedIn ? (
+                        <div className="userReviewPrompt">
+                          <div className="userReviewAvatar">
+                            <img src="/assets/img/noavatar.png" alt="" />
+                          </div>
+                          {!reviewed ? (
+                            <div className="userReviewBody">
+                              <div className="userReviewTitle">
+                                {data.data.reviews.length === 0
+                                  ? "Be the first to "
+                                  : ""}
+                                Rate and Review {data.data.title}
+                              </div>
+                              <div className="userReviewContent">
+                                <StarRatings
+                                  rating={rating}
+                                  starRatedColor="orange"
+                                  changeRating={(e) => {
+                                    setRating(e);
+                                  }}
+                                  starHoverColor="gold"
+                                  starDimension="30px"
+                                  starSpacing="0px"
+                                  numberOfStars={5}
+                                  name="rating"
+                                />
+                                <textarea
+                                  value={comment}
+                                  onChange={(e) => {
+                                    setComment(e.target.value);
+                                  }}
+                                  required
+                                  placeholder="Write your review!"
+                                />
+                                <button
+                                  style={{ marginTop: "15px" }}
+                                  className="genreLikeButton bookLiked"
+                                  onClick={submitReview}
+                                >
+                                  Submit
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                          <span
+                            style={{
+                              marginLeft: "10px",
+                              fontSize: "14px",
+                            }}
+                          >
+                            {message}
+                          </span>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

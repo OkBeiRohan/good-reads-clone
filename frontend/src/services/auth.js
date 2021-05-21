@@ -13,7 +13,7 @@ const checkAuth = async () => {
         }
       );
       if (res.data.auth_status) {
-        return { loading: false, signedIn: true };
+        return { loading: false, signedIn: true, token: jwt.token };
       } else {
         localStorage.removeItem("currentUser");
         return { loading: false, signedIn: false };

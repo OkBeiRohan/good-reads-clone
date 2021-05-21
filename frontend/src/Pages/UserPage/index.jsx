@@ -51,7 +51,9 @@ function UserPage({
         textColor="#676767"
         logoSrc="/assets/img/logo.png"
         text=""
-      />
+      >
+        <></>
+      </LoadingScreen>
       {signedIn ? <SignedInHeader /> : <SignedOutHeader />}
       <h1>ID: {id}</h1>
       <br />

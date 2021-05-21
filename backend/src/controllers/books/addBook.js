@@ -10,7 +10,7 @@ const addBook = async (req, res) => {
     const newBook = new books({
       ibn: req.body.ibn,
       title: req.body.title,
-      added_by: req.body.user_id,
+      added_by: req.user.user_id,
       author: req.body.author,
       language: req.body.language,
       cover_img: req.body.cover_img,
@@ -19,7 +19,7 @@ const addBook = async (req, res) => {
       year: req.body.year,
       genre: req.body.genre,
     });
-    const addedUser = await users.findById(req.body.user_id);
+    const addedUser = await users.findById(req.user.user_id);
     if (!addedUser) return res.json({ status: true, type: "userdoesntexist" });
     else addedUser.userdata.contributions.books.push(newBook._id);
     try {

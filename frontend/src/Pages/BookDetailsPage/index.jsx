@@ -34,7 +34,9 @@ function BookDetailsPage({
         textColor="#676767"
         logoSrc="/assets/img/logo.png"
         text=""
-      />
+      >
+        <></>
+      </LoadingScreen>
       {signedIn ? <SignedInHeader /> : <SignedOutHeader />}
       <BookDetails isbn={isbn} />
     </>

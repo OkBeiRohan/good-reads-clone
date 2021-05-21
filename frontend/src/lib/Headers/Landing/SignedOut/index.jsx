@@ -137,7 +137,9 @@ function SignedOutHeaderLanding() {
                 textColor="#676767"
                 logoSrc="/assets/img/logo.png"
                 text=""
-              />
+              >
+                <></>
+              </LoadingScreen>
               {state2 === "all" ? (
                 <>
                   <h2>Discover &amp; read more</h2>

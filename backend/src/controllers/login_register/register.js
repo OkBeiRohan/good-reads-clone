@@ -22,9 +22,8 @@ const register = async (req, res) => {
   user.save(function (err, n) {
     if (err) return res.status(500).json({ error: err });
     console.log(n.username + " saved");
+    res.status(200).json({ status: true });
   });
-
-  res.status(200).json({ status: "Success! I think" });
 };
 
 module.exports = register;

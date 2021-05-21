@@ -48,6 +48,8 @@ const users = new Schema(
     },
     avatar: {
       type: String,
+      required: true,
+      default: "/assets/img/noavatar.png",
     },
     status: {
       account: { type: Boolean, required: true, default: true },

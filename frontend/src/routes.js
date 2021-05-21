@@ -43,7 +43,9 @@ function PrivateRoute({ component: Component, ...rest }) {
             textColor="#676767"
             logoSrc="/assets/img/logo.png"
             text=""
-          />
+          >
+            <></>
+          </LoadingScreen>
         ) : signedIn ? (
           <Component />
         ) : (
