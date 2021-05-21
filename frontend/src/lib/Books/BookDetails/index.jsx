@@ -40,54 +40,63 @@ function BookDetails({ isbn }) {
                     <h1 className="bookTitle">{data.data.title}</h1>
                     <div className="bookAuthor">by {data.data.author}</div>
                     <div className="bookRatingContainer">
-                      <div className="bookRating">
-                        <span
-                          size="12x12"
-                          className={
-                            data.data.avg_rating >= 1
-                              ? "staticStar p10"
-                              : "staticStar p0"
-                          }
-                        ></span>
-                        <span
-                          size="12x12"
-                          className={
-                            data.data.avg_rating >= 2
-                              ? "staticStar p10"
-                              : "staticStar p0"
-                          }
-                        ></span>
-                        <span
-                          size="12x12"
-                          className={
-                            data.data.avg_rating >= 3
-                              ? "staticStar p10"
-                              : "staticStar p0"
-                          }
-                        ></span>
-                        <span
-                          size="12x12"
-                          className={
-                            data.data.avg_rating >= 4
-                              ? "staticStar p10"
-                              : "staticStar p0"
-                          }
-                        ></span>
-                        <span
-                          size="12x12"
-                          className={
-                            data.data.avg_rating >= 5
-                              ? "staticStar p10"
-                              : "staticStar p0"
-                          }
-                        ></span>
-                      </div>{" "}
-                      <span style={{ color: "rgb(123 123 123)" }}>
-                        {data.data.avg_rating}
-                      </span>
-                      <span style={{ color: "#000", marginLeft: "10px" }}>
-                        From {data.data.reviews.length} Ratings
-                      </span>
+                      {data.data.avg_rating > 0 ||
+                      data.data.reviews.length > 0 ? (
+                        <>
+                          <div className="bookRating">
+                            <span
+                              size="12x12"
+                              className={
+                                data.data.avg_rating >= 1
+                                  ? "staticStar p10"
+                                  : "staticStar p0"
+                              }
+                            ></span>
+                            <span
+                              size="12x12"
+                              className={
+                                data.data.avg_rating >= 2
+                                  ? "staticStar p10"
+                                  : "staticStar p0"
+                              }
+                            ></span>
+                            <span
+                              size="12x12"
+                              className={
+                                data.data.avg_rating >= 3
+                                  ? "staticStar p10"
+                                  : "staticStar p0"
+                              }
+                            ></span>
+                            <span
+                              size="12x12"
+                              className={
+                                data.data.avg_rating >= 4
+                                  ? "staticStar p10"
+                                  : "staticStar p0"
+                              }
+                            ></span>
+                            <span
+                              size="12x12"
+                              className={
+                                data.data.avg_rating >= 5
+                                  ? "staticStar p10"
+                                  : "staticStar p0"
+                              }
+                            ></span>
+                          </div>{" "}
+                          <span style={{ color: "rgb(123 123 123)" }}>
+                            {data.data.avg_rating}
+                          </span>
+                          <span style={{ color: "#000", marginLeft: "10px" }}>
+                            From {data.data.reviews.length} Ratings
+                          </span>
+                        </>
+                      ) : (
+                        <span style={{ color: "#000", marginBottom: "10px" }}>
+                          No reviews yet!
+                        </span>
+                      )}
                       <br />
                     </div>
                     <div className="bookDescription">
@@ -97,9 +106,31 @@ function BookDetails({ isbn }) {
                       <div className="bookHeaders">
                         <h2>Genres</h2>
                       </div>
+                      <div className="bookGenres">
+                        {data.data.genre.map((genre, index) => (
+                          <a href={`/genres/${genre}`}>
+                            {genre}
+                            {index !== data.data.genre.length - 1 ? "," : ""}
+                          </a>
+                        ))}
+                      </div>
                     </div>
-                    {isbn}
+                    <div className="bookISBN">ISBN: {isbn}</div>
+                    {signedIn ? (
+                      <div className="genreLikeButton bookLiked liked">
+                        Liked
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <a
+                      className="genreLikeButton bookLiked"
+                      href={data.data.buy_url}
+                    >
+                      Buy Now
+                    </a>
                   </div>
+                  <div className="bookReviews"></div>
                 </div>
               </div>
             </div>

@@ -88,7 +88,49 @@
 }
 .bookHeaders {
   border-bottom: 1px solid #d8d8d8;
-  padding-bottom: 8px;
-  margin-top: 8px;
-  
+  padding-bottom: 2px;
+  margin-top: 30px;
+}
+.bookHeaders h2 {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: #382110;
+  margin: 4px 0px 4px 0px;
+}
+.bookGenres {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.bookGenres a {
+  text-decoration: none;
+  margin-right: 5px;
+  color: #382110;
+  transition: 0.5s ease;
+}
+.bookGenres a:hover {
+  text-decoration: underline;
+  color: #1e5797;
+}
+.bookISBN {
+  border-top: 1px solid #d8d8d8;
+}
+.bookLiked {
+  width: 100px;
+  margin-right: 10px;
+  transition: 0.5s ease;
+}
+.bookLiked:hover {
+  background-color: #f7e2a8;
+}
+.bookLiked.liked {
+  background-color: #f7e2a8;
+}
+.bookLiked.liked:hover {
+  background-color: #f4f1ea;
+}
+.bookReviews {
+  width: 100%;
+  padding-bottom: 10px;
 }
