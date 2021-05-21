@@ -9,23 +9,43 @@ function BookDetails({ isbn }) {
   const [data, setData] = useState(null);
   const [signedIn, setSignedIn] = useState(false);
   const [reviewed, setReviewed] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [message, setMessage] = useState("");
   const [token, setToken] = useState("");
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    async function getData() {
-      try {
-        const res = await api.post("/api/findbook", { ibn: isbn });
-        if (res.data) if (res.data.status) setData(res.data);
-      } catch (e) {}
-    }
-    getData();
     async function auth() {
       const res = await checkAuth();
       setSignedIn(res.signedIn);
-      if (res.signedIn) setToken(res.token);
+      if (res.signedIn) {
+        setToken(res.token);
+        try {
+          const resx = await api.post(
+            "/user/findbook",
+            { ibn: isbn },
+            {
+              headers: { Authorization: `Bearer ${res.token}` },
+            }
+          );
+          if (resx.data) {
+            setData(resx.data);
+            setReviewed(resx.data.isReviewed);
+            setIsLiked(resx.data.isLiked);
+          }
+        } catch (e) {
+          setData({ status: false, type: "catch", error: e });
+        }
+      } else {
+        try {
+          const resx = await api.post("/api/findbook", { ibn: isbn });
+          if (resx.data) setData(resx.data);
+        } catch (e) {
+          setData({ status: false, type: "catch", error: e });
+        }
+      }
     }
     auth();
   }, [isbn]);
@@ -37,8 +57,12 @@ function BookDetails({ isbn }) {
     : "Reader Giant";
 
   const submitReview = async () => {
-    if (rating === "0") {
+    if (rating === 0) {
       setMessage("Please select a rating!");
+      return;
+    }
+    if (comment === "") {
+      setMessage("Enter your review!");
       return;
     }
     try {
@@ -46,7 +70,7 @@ function BookDetails({ isbn }) {
         "/user/addreview",
         {
           rating,
-          message,
+          comment,
           ibn: data.data.ibn,
         },
         {
@@ -66,6 +90,30 @@ function BookDetails({ isbn }) {
       setMessage("" + e);
     }
   };
+
+  const likeHandler = async () => {
+    setDisabled(true);
+    try {
+      const res = await api.post(
+        "/user/likebook",
+        {
+          liked: isLiked,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (res.data.status) {
+        setDisabled(false);
+        if (isLiked) setIsLiked(false);
+        else setIsLiked(true);
+      }
+    } catch (e) {
+      setDisabled(false);
+      console.log(e);
+    }
+  };
+
   return (
     <div className="mainContentContainer">
       <div className="mainContent">
@@ -128,9 +176,17 @@ function BookDetails({ isbn }) {
                     </div>
                     <div className="bookISBN">ISBN: {isbn}</div>
                     {signedIn ? (
-                      <div className="genreLikeButton bookLiked liked">
-                        Liked
-                      </div>
+                      <button
+                        className={
+                          isLiked
+                            ? "genreLikeButton bookLiked liked"
+                            : "genreLikeButton bookLiked"
+                        }
+                        onClick={likeHandler}
+                        disabled={disabled}
+                      >
+                        {isLiked ? "Liked" : "Like"}
+                      </button>
                     ) : (
                       ""
                     )}
@@ -190,7 +246,20 @@ function BookDetails({ isbn }) {
                               </div>
                             </div>
                           ) : (
-                            ""
+                            <div className="userReviewBody">
+                              <div className="userReviewTitle">Your Review</div>
+                              <div className="userReviewContent">
+                                <StarRatings
+                                  rating={data.myReview.rating}
+                                  starRatedColor="orange"
+                                  starDimension="20px"
+                                  starSpacing="0px"
+                                  numberOfStars={5}
+                                  name="rating"
+                                />
+                                <div>{data.myReview.comment}</div>
+                              </div>
+                            </div>
                           )}
                           <span
                             style={{
@@ -204,6 +273,41 @@ function BookDetails({ isbn }) {
                       ) : (
                         ""
                       )}
+                      {data.data.reviews.length > 0
+                        ? data.data.reviews.map((review, index) => (
+                            <div
+                              key={index}
+                              className="userReviewPrompt"
+                              style={{
+                                display: reviewed
+                                  ? review._id === data.myReview._id
+                                    ? "none"
+                                    : "flex"
+                                  : "flex",
+                              }}
+                            >
+                              <div className="userReviewAvatar">
+                                <img src={review.avatar} alt="" />
+                              </div>
+                              <div className="userReviewBody">
+                                <div className="userReviewTitle">
+                                  {review.name}
+                                </div>
+                                <div className="userReviewContent">
+                                  <StarRatings
+                                    rating={review.rating}
+                                    starRatedColor="orange"
+                                    starDimension="20px"
+                                    starSpacing="0px"
+                                    numberOfStars={5}
+                                    name="rating"
+                                  />
+                                  <div>{review.comment}</div>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        : ""}
                     </div>
                   </div>
                 </div>

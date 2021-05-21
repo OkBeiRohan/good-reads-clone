@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 // import api from "../../../../services/api";
 
 import "./styles.css";
@@ -44,7 +45,14 @@ function SignedOutHeader() {
       </form>
 
       <div className="NavButton" style={{ width: "250px" }}>
-        <a href="/">Sign In | Create an Account</a>
+        <Link
+          to={{
+            pathname: "/",
+            state: { from: window.location.pathname },
+          }}
+        >
+          Sign In | Create an Account
+        </Link>
       </div>
     </div>
   );

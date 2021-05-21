@@ -28,6 +28,8 @@ const addReview = async (req, res) => {
       comment: req.body.comment,
       res_upvotes: 0,
       date: new Date(),
+      name: findUser.name,
+      avatar: findUser.avatar,
     });
 
     findBook.avg_rating =

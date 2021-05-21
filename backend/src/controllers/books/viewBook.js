@@ -11,6 +11,7 @@ const findBook = async (req, res) => {
       if (!user) return res.json({ status: false, type: "empty" });
       let isReviewed;
       let myReviewID;
+      if (user.userdata.contributions.reviews.length === 0) isReviewed = false;
       user.userdata.contributions.reviews.find((value) => {
         if (value.book.toString() === findBook._id.toString()) {
           isReviewed = true;
@@ -26,15 +27,17 @@ const findBook = async (req, res) => {
         myReview = await findBook.reviews.id(myReviewID);
       }
       let isLiked;
-      user.userdata.likes.books.find((value) => {
-        if (value.book.toString() === findBook._id.toString()) {
-          isLiked = true;
-          return;
-        } else {
-          isLiked = false;
-          return;
-        }
-      });
+      if (user.userdata.likes.books.length === 0) isLiked = false;
+      else
+        user.userdata.likes.books.find((value) => {
+          if (value.toString() === findBook._id.toString()) {
+            isLiked = true;
+            return;
+          } else {
+            isLiked = false;
+            return;
+          }
+        });
       return res.json({
         status: true,
         data: findBook,

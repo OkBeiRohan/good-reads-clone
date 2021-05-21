@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import api from "../../../../services/api";
 import LoadingScreen from "react-loading-screen";
+import { useHistory } from "react-router-dom";
 
 import "./styles.css";
-import { Redirect, useLocation } from "react-router";
+import { useLocation } from "react-router";
 
 function SignedOutHeaderLanding() {
   const [disable, setDisable] = useState(false);
@@ -20,6 +21,7 @@ function SignedOutHeaderLanding() {
   const [loading, setLoading] = useState(false);
 
   const { state } = useLocation();
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +48,7 @@ function SignedOutHeaderLanding() {
             if (localStorage.getItem("currentUser") == null) {
               console.log("Save Error!");
             }
-            if (state?.from) return <Redirect to={state.from} />;
+            if (state?.from) history.push(state.from);
             else window.location.reload();
           } else {
             setLoading(false);
