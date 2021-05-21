@@ -93,6 +93,11 @@ function BookDetails({ isbn }) {
                     <div className="bookDescription">
                       {data.data.description}
                     </div>
+                    <div>
+                      <div className="bookHeaders">
+                        <h2>Genres</h2>
+                      </div>
+                    </div>
                     {isbn}
                   </div>
                 </div>
