@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
-import SignedOutHeader from "../../lib/Headers/Common/SignedOut";
-import SignedInHeader from "../../lib/Headers/Common/SignedIn";
-import LoadingScreen from "react-loading-screen";
-import checkAuth from "../../services/auth";
-import ViewBooks from "../../lib/Books/ViewBooks";
+import React, { useState, useEffect } from "react";
 import Footer from "../../lib/Footers";
+import SignedInHeader from "../../lib/Headers/Common/SignedIn";
+import SignedOutHeader from "../../lib/Headers/Common/SignedOut";
+import checkAuth from "../../services/auth";
+import LoadingScreen from "react-loading-screen";
+import SearchBook from "../../lib/Books/SearchBook";
 
-function GenreSearch({
+function BookSearchPage({
   match: {
-    params: { genre },
+    params: { query },
   },
 }) {
-  document.title =
-    genre === "all"
-      ? "Top Rated Books - Reader Giant"
-      : "Best " + genre + " books - Reader Giant";
+  document.title = "Search - Reader Giant";
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
 
@@ -28,7 +25,6 @@ function GenreSearch({
     }
     auth();
   }, []);
-
   return (
     <>
       <LoadingScreen
@@ -42,10 +38,10 @@ function GenreSearch({
         <></>
       </LoadingScreen>
       {signedIn ? <SignedInHeader /> : <SignedOutHeader />}
-      <ViewBooks genre={genre} />
       <Footer />
+      <SearchBook query={query} />
     </>
   );
 }
 
-export default GenreSearch;
+export default BookSearchPage;

@@ -4,6 +4,7 @@ import SignedInHeader from "../../lib/Headers/Common/SignedIn";
 import LoadingScreen from "react-loading-screen";
 import checkAuth from "../../services/auth";
 import ViewBooks from "../../lib/Books/ViewBooks";
+import Footer from "../../lib/Footers";
 
 function DiscoverPage() {
   document.title = "Discover - Reader Giant";
@@ -35,6 +36,7 @@ function DiscoverPage() {
       </LoadingScreen>
       {signedIn ? <SignedInHeader /> : <SignedOutHeader />}
       <ViewBooks genre="all" />
+      <Footer />
     </>
   );
 }

@@ -13,7 +13,7 @@ import UserPage from "./Pages/UserPage";
 import LoadingScreen from "react-loading-screen";
 import GenreSearch from "./Pages/GenreSearch";
 import BookDetailsPage from "./Pages/BookDetailsPage";
-import BookSearchPage from "./Pages/AddBookPage";
+import BookSearchPage from "./Pages/BookSearchPage";
 import AddBookPage from "./Pages/AddBookPage";
 import MyReviewsPage from "./Pages/MyReviewsPage";
 import MyBooksPage from "./Pages/MyBooksPage";

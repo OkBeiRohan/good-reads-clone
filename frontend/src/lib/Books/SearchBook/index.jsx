@@ -3,7 +3,12 @@ import React from "react";
 // import "./styles.css";
 
 function SearchBook({ query }) {
-  return <div className="mainContentContainer">{query}</div>;
+  document.title = query + " - Reader Giant";
+  return (
+    <div className="mainContentContainer">
+      <div className="mainContent">{query}</div>
+    </div>
+  );
 }
 
 export default SearchBook;

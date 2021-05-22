@@ -4,6 +4,7 @@ import SignedInHeader from "../../lib/Headers/Common/SignedIn";
 import SignedOutHeader from "../../lib/Headers/Common/SignedOut";
 import checkAuth from "../../services/auth";
 import LoadingScreen from "react-loading-screen";
+import Footer from "../../lib/Footers";
 
 function UserPage({
   match: {
@@ -14,8 +15,10 @@ function UserPage({
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
 
-  document.title = data.data.name
-    ? data.data.name + " - Reader Giants' Community"
+  document.title = data
+    ? data.status
+      ? data.data.name + " - Reader Giants' Community"
+      : "Reader Giant"
     : "Reader Giant";
 
   useEffect(() => {
@@ -77,6 +80,7 @@ function UserPage({
       ) : (
         "Please Wait!"
       )}
+      <Footer />
     </>
   );
 }

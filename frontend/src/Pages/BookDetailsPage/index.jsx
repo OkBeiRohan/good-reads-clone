@@ -4,6 +4,7 @@ import SignedInHeader from "../../lib/Headers/Common/SignedIn";
 import LoadingScreen from "react-loading-screen";
 import checkAuth from "../../services/auth";
 import BookDetails from "../../lib/Books/BookDetails";
+import Footer from "../../lib/Footers";
 
 function BookDetailsPage({
   match: {
@@ -39,6 +40,7 @@ function BookDetailsPage({
       </LoadingScreen>
       {signedIn ? <SignedInHeader /> : <SignedOutHeader />}
       <BookDetails isbn={isbn} />
+      <Footer />
     </>
   );
 }

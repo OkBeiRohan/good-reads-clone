@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../../lib/Footers";
 import SignedInHeader from "../../lib/Headers/Common/SignedIn";
 
 function MyBooksPage() {
@@ -6,6 +7,7 @@ function MyBooksPage() {
   return (
     <>
       <SignedInHeader />
+      <Footer />
     </>
   );
 }
