@@ -2,22 +2,30 @@ import React from "react";
 
 import "./styles.css";
 
-function ViewBooks({ genre }) {
+function ViewBooks({ genre, signedIn, token }) {
   return (
     <div className="mainContentContainer">
       <div className="mainContent">
         <div className="mainContentFloat">
           <div className="leftContainer">
             <div style={{ margin: "10px 0px 10px 0px" }}>
-              <h1 style={{ fontSize: "24px", float: "left" }}>
+              <h1
+                style={{
+                  fontSize: "24px",
+                  float: "left",
+                  textTransform: "capitalize",
+                }}
+              >
                 {genre === "all" ? "Top Rated Books" : genre}
               </h1>
               <div style={{ float: "right" }}>
                 <div style={{ width: "180px" }}>
                   {genre === "all" ? (
                     ""
-                  ) : (
+                  ) : signedIn ? (
                     <button className="genreLikeButton">Liked</button>
+                  ) : (
+                    ""
                   )}
                 </div>
               </div>

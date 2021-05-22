@@ -17,11 +17,13 @@ function GenreSearch({
       : "Best " + genre + " books - Reader Giant";
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     async function auth() {
       const res = await checkAuth();
       setSignedIn(res.signedIn);
+      if (res.signedIn) setToken(res.token);
       setTimeout(() => {
         setLoading(res.loading);
       }, [1000]);
@@ -42,7 +44,7 @@ function GenreSearch({
         <></>
       </LoadingScreen>
       {signedIn ? <SignedInHeader /> : <SignedOutHeader />}
-      <ViewBooks genre={genre} />
+      <ViewBooks genre={genre} signedIn={signedIn} token={token} />
       <Footer />
     </>
   );

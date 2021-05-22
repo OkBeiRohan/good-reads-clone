@@ -11,11 +11,13 @@ function LandingPage() {
 
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     async function auth() {
       const res = await checkAuth();
       setSignedIn(res.signedIn);
+      if (res.signedIn) setToken(res.token);
       setTimeout(() => {
         setLoading(res.loading);
       }, [1000]);
@@ -38,7 +40,7 @@ function LandingPage() {
       {signedIn ? (
         <>
           <SignedInHeader />
-          <ViewBooks genre="all" />
+          <ViewBooks genre="all" signedIn={signedIn} token={token} />
         </>
       ) : (
         <SignedOutHeaderLanding />
