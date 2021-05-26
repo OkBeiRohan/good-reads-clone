@@ -2,8 +2,8 @@
 # Reader Giant
 Book view, add and review platform.
 ## Team members
-1. Merin Mary Josy [Embed personal github URL]
-2. Devadarsh VK [Embed perosnal github URL]
+1. Merin Mary Josy [https://github.com/MerinM]
+2. Devadarsh VK [https://github.com/gitkichigo]
 ## Team Id
 BFH/recUbq9RWBtQT19vq/2021
 ## Link to product walkthrough
