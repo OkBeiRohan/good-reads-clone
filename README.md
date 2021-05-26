@@ -1,6 +1,6 @@
 ![BFH Banner](https://trello-attachments.s3.amazonaws.com/542e9c6316504d5797afbfb9/542e9c6316504d5797afbfc1/39dee8d993841943b5723510ce663233/Frame_19.png)
-# Project Name
-Long Description about project. This project do that. This project is awesome...
+# Reader Giant
+Book view, add and review platform.
 ## Team members
 1. Merin Mary Josy [Embed personal github URL]
 2. Devadarsh VK [Embed perosnal github URL]
@@ -11,7 +11,7 @@ BFH/recUbq9RWBtQT19vq/2021
 ## How it Works ?
 1. React client sends requests and node js backend replies data. And frontend will render page accordingly
 
-# Reader Giant
+## Info
 
 A <a href="https://www.goodreads.com/">Good Reads</a> clone made using React and Node
 TeamID: BFH/recUbq9RWBtQT19vq/2021
