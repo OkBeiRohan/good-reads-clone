@@ -1,6 +1,9 @@
 # Reader Giant
 
 A <a href="https://www.goodreads.com/">Good Reads</a> clone made using React and Node
+TeamID:BFH/recUbq9RWBtQT19vq/2021
+Members: Rohan K, Merin Mary Josy, Devadarsh Vinod
+
 
 ## Stack Used: MERN
 
