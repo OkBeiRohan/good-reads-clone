@@ -1,3 +1,16 @@
+![BFH Banner](https://trello-attachments.s3.amazonaws.com/542e9c6316504d5797afbfb9/542e9c6316504d5797afbfc1/39dee8d993841943b5723510ce663233/Frame_19.png)
+# Project Name
+Long Description about project. This project do that. This project is awesome...
+## Team members
+1. Merin Mary Josy [Embed personal github URL]
+2. Devadarsh VK [Embed perosnal github URL]
+## Team Id
+BFH/recUbq9RWBtQT19vq/2021
+## Link to product walkthrough
+[https://drive.google.com/folderview?id=106DafpB_J0GiWSoAHE_SZnKA9345UXPl]
+## How it Works ?
+1. React client sends requests and node js backend replies data. And frontend will render page accordingly
+
 # Reader Giant
 
 A <a href="https://www.goodreads.com/">Good Reads</a> clone made using React and Node
