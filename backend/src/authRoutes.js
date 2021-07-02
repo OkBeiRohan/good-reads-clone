@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const addBook = require("./controllers/books/addBook");
 const { addReview, editReview } = require("./controllers/books/reviewHandler");
-const { findBook } = require("./controllers/books/viewBook");
+const { findBook, viewBooks } = require("./controllers/books/viewBook");
 const isAuthed = require("./controllers/isAuthed");
 
 /********
@@ -13,5 +13,6 @@ router.post("/addbook", addBook);
 router.post("/addreview", addReview);
 router.post("/editreview", editReview);
 router.post("/findbook", findBook);
+router.post("/viewbooks", viewBooks);
 
 module.exports = router;

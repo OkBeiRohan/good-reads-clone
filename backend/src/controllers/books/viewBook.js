@@ -63,6 +63,23 @@ const viewBooks = async (req, res) => {
       .find({ genre: { $eq: req.body.genre } })
       .sort({ avg_rating: -1 });
   if (findBooks.length === 0) return res.json({ status: false, type: "empty" });
+  if (req.user)
+    if (req.user.user_id) {
+      const user = await users.findById(req.user.user_id).select("-password");
+      let isLiked = false;
+      if (user.userdata.likes.genres.length === 0) isLiked = false;
+      else
+        user.userdata.likes.genres.find((value) => {
+          if (value.toString() === findBook._id.toString()) {
+            isLiked = true;
+            return;
+          } else {
+            isLiked = false;
+            return;
+          }
+        });
+      return res.json({ status: true, data: findBooks, isLiked });
+    }
   return res.json({ status: true, data: findBooks });
 };
 

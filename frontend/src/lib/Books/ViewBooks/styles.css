@@ -77,18 +77,34 @@
   width: 100%;
   padding: 10px 0;
   margin-left: 0;
-  display: flex;
 }
 .book {
   margin: 0;
-  width: 125px;
   overflow: hidden;
   float: left;
   margin-left: auto;
   margin-right: auto;
-  height: 180px;
+  height: auto;
   bottom: 0;
   border: 0;
-  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
 }
-
+.bookSearchDetails {
+  text-align: justify;
+  margin-left: 20px;
+  word-wrap: break-word;
+}
+.bookSearchDetails a {
+  text-decoration: none;
+  color: black;
+}
+.bookSearchDetails a:hover {
+  text-decoration: underline;
+  color: #333333;
+}
+.bookSearchAuthor {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
