@@ -1,6 +1,22 @@
+![BFH Banner](https://trello-attachments.s3.amazonaws.com/542e9c6316504d5797afbfb9/542e9c6316504d5797afbfc1/39dee8d993841943b5723510ce663233/Frame_19.png)
 # Reader Giant
+Book view, add and review platform.
+## Team members
+1. Merin Mary Josy [https://github.com/MerinM]
+2. Devadarsh VK [https://github.com/gitkichigo]
+## Team Id
+BFH/recUbq9RWBtQT19vq/2021
+## Link to product walkthrough
+[https://drive.google.com/folderview?id=106DafpB_J0GiWSoAHE_SZnKA9345UXPl]
+## How it Works ?
+1. React client sends requests and node js backend replies data. And frontend will render page accordingly
+
+## Info
 
 A <a href="https://www.goodreads.com/">Good Reads</a> clone made using React and Node
+TeamID: BFH/recUbq9RWBtQT19vq/2021
+Members: Rohan K, Merin Mary Josy, Devadarsh Vinod
+
 
 ## Stack Used: MERN
 
